@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed &amp; Ghada — Engagement Celebration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Jost:wght@300;400;500;600&family=Amiri&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF5EC;
+    --ivory-deep:#F3E9DB;
+    --gold:#C7A24C;
+    --gold-soft:#E4CD98;
+    --blush:#E9C7C3;
+    --burgundy:#6E1E2E;
+    --burgundy-deep:#4A1420;
+    --ink:#3A2A26;
+    --ink-soft:#6B5850;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  ::selection{background:var(--gold-soft); color:var(--burgundy-deep);}
+
+  a{color:inherit;}
+
+  /* ---------- Signature motif: interlocking rings, line-drawn ---------- */
+  .rings-svg{display:block; margin:0 auto;}
+  .rings-svg circle{
+    fill:none;
+    stroke:var(--gold);
+    stroke-width:1.4;
+    stroke-dasharray:220;
+    stroke-dashoffset:220;
+    animation:draw-ring 2.6s ease forwards;
+  }
+  .rings-svg circle.c2{animation-delay:.35s;}
+  @keyframes draw-ring{ to{stroke-dashoffset:0;} }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:0 auto;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .divider.in-view{opacity:1; transform:translateY(0);}
+  .divider .line{width:52px; height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent);}
+  .divider svg{width:34px; height:20px;}
+  .divider svg circle{fill:none; stroke:var(--gold); stroke-width:1.3;}
+
+  /* ---------- Section 1 : Hero ---------- */
+  .hero{
+    position:relative;
+    height:100svh;
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 18%, rgba(199,162,76,0.18), transparent 55%),
+      linear-gradient(160deg, var(--ivory) 0%, var(--ivory-deep) 45%, var(--blush) 100%);
+  }
+
+  .hero .bg-art{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .hero .bg-art .petal{
+    position:absolute;
+    border-radius:50% 0 50% 50%;
+    background:linear-gradient(135deg, rgba(233,199,195,0.55), rgba(199,162,76,0.28));
+    filter:blur(0.5px);
+    opacity:0;
+    animation:petal-fade 2.4s ease forwards;
+  }
+  @keyframes petal-fade{ to{opacity:1;} }
+
+  .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:0 24px;
+    max-width:640px;
+  }
+
+  .hero-frame{
+    width:min(72vw, 300px);
+    aspect-ratio:3/3.6;
+    margin:0 auto 34px;
+    position:relative;
+    padding:14px;
+    border:1px solid rgba(199,162,76,0.55);
+    opacity:0;
+    animation:frame-in 1.4s ease forwards .2s;
+  }
+  @keyframes frame-in{ from{opacity:0; transform:scale(.94);} to{opacity:1; transform:scale(1);} }
+
+  .hero-frame::before, .hero-frame::after{
+    content:'';
+    position:absolute;
+    width:26px; height:26px;
+    border:1px solid var(--gold);
+  }
+  .hero-frame::before{ top:-6px; left:-6px; border-right:none; border-bottom:none; }
+  .hero-frame::after{ bottom:-6px; right:-6px; border-left:none; border-top:none; }
+
+  .hero-frame .frame-inner{
+    width:100%; height:100%;
+    border-radius:2px;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), transparent 55%),
+      linear-gradient(150deg, var(--gold-soft) 0%, var(--blush) 55%, var(--burgundy) 130%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    letter-spacing:0.06em;
+    color:var(--burgundy);
+    opacity:0;
+    animation:rise-in 1s ease forwards .9s;
+  }
+
+  .hero h1{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:clamp(2.4rem, 8vw, 4.2rem);
+    line-height:1.08;
+    color:var(--burgundy-deep);
+    margin:10px 0 6px;
+    opacity:0;
+    animation:rise-in 1.1s ease forwards 1.1s;
+  }
+
+  .hero .names{
+    font-family:'Playfair Display', serif;
+    font-size:clamp(1.2rem, 3.4vw, 1.6rem);
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-top:10px;
+    opacity:0;
+    animation:rise-in 1.1s ease forwards 1.4s;
+  }
+
+  .hero .arabic-line{
+    font-family:'Amiri', serif;
+    font-size:1.3rem;
+    color:var(--burgundy);
+    margin-top:16px;
+    opacity:0;
+    animation:rise-in 1.1s ease forwards 1.6s;
+  }
+
+  @keyframes rise-in{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:34px; left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    opacity:0;
+    animation:rise-in 1s ease forwards 2.1s;
+  }
+  .scroll-cue span{
+    font-size:0.7rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .scroll-cue .stem{
+    width:1px; height:34px;
+    background:linear-gradient(var(--gold), transparent);
+    position:relative;
+    overflow:hidden;
+  }
+  .scroll-cue .stem::after{
+    content:'';
+    position:absolute;
+    top:-34px; left:0;
+    width:1px; height:34px;
+    background:var(--burgundy);
+    animation:drip 2.2s ease-in-out infinite;
+  }
+  @keyframes drip{ 0%{top:-34px;} 100%{top:34px;} }
+
+  /* ---------- Reveal-on-scroll base ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(34px);
+    transition:opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  .reveal-delay-1.in-view{transition-delay:.12s;}
+  .reveal-delay-2.in-view{transition-delay:.24s;}
+  .reveal-delay-3.in-view{transition-delay:.36s;}
+
+  /* ---------- Section 2 : Details ---------- */
+  .details{
+    position:relative;
+    padding:100px 20px 90px;
+    background:var(--ivory);
+  }
+
+  .details-head{ text-align:center; margin-bottom:52px; }
+
+  .details-head .eyebrow{ animation:none; opacity:1; }
+
+  .details-head h2{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:clamp(1.9rem, 5vw, 2.7rem);
+    color:var(--burgundy-deep);
+    margin:8px 0 4px;
+  }
+
+  .details-head .subline{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+  }
+
+  .card{
+    max-width:620px;
+    margin:0 auto 40px;
+    background:linear-gradient(180deg, #fff, var(--ivory-deep));
+    border:1px solid rgba(199,162,76,0.35);
+    border-radius:6px;
+    padding:38px 30px;
+    box-shadow:0 24px 50px -30px rgba(74,20,32,0.35);
+    text-align:center;
+  }
+
+  .datetime{
+    display:flex;
+    justify-content:center;
+    gap:34px;
+    flex-wrap:wrap;
+    margin:22px 0 8px;
+  }
+  .datetime .item{ text-align:center; }
+  .datetime .item .num{
+    font-family:'Playfair Display', serif;
+    font-size:2.1rem;
+    color:var(--burgundy);
+  }
+  .datetime .item .label{
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  .venue-name{
+    font-family:'Playfair Display', serif;
+    font-size:1.3rem;
+    color:var(--burgundy-deep);
+    margin:26px 0 6px;
+  }
+  .venue-address{
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:440px;
+    margin:0 auto;
+  }
+  .venue-coords{
+    font-size:0.82rem;
+    color:var(--gold);
+    letter-spacing:0.04em;
+    margin-top:8px;
+  }
+
+  .map-wrap{
+    max-width:620px;
+    margin:0 auto 40px;
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid rgba(199,162,76,0.35);
+    box-shadow:0 24px 50px -30px rgba(74,20,32,0.35);
+  }
+  .map-wrap iframe{ width:100%; height:320px; border:0; display:block; filter:saturate(0.85) sepia(0.06); }
+  .map-cta{
+    display:block;
+    text-align:center;
+    padding:16px;
+    background:var(--burgundy);
+    color:var(--ivory);
+    text-decoration:none;
+    letter-spacing:0.08em;
+    font-size:0.85rem;
+    text-transform:uppercase;
+    transition:background .3s ease;
+  }
+  .map-cta:hover{ background:var(--burgundy-deep); }
+
+  .qr-block{
+    max-width:620px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .qr-block .qr-frame{
+    display:inline-block;
+    padding:16px;
+    background:#fff;
+    border:1px solid rgba(199,162,76,0.45);
+    border-radius:6px;
+    box-shadow:0 24px 50px -30px rgba(74,20,32,0.35);
+  }
+  .qr-block img{ width:150px; height:150px; display:block; }
+  .qr-block p{
+    margin-top:14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+  }
+
+  /* Countdown */
+  .countdown-title{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    margin:70px 0 20px;
+    font-size:1.1rem;
+  }
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    max-width:520px;
+    margin:0 auto 10px;
+  }
+  .countdown .cell{
+    background:var(--burgundy);
+    color:var(--ivory);
+    width:78px;
+    padding:16px 0;
+    border-radius:6px;
+    text-align:center;
+    position:relative;
+  }
+  .countdown .cell::after{
+    content:'';
+    position:absolute; inset:4px;
+    border:1px solid rgba(199,162,76,0.55);
+    border-radius:3px;
+    pointer-events:none;
+  }
+  .countdown .cell .val{
+    font-family:'Playfair Display', serif;
+    font-size:1.7rem;
+    display:block;
+  }
+  .countdown .cell .lbl{
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.8;
+  }
+
+  /* ---------- Section 3 : Closing ---------- */
+  .closing{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:110px 24px;
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(199,162,76,0.22), transparent 60%),
+      linear-gradient(180deg, var(--ivory-deep) 0%, var(--blush) 55%, var(--burgundy) 150%);
+    overflow:hidden;
+    text-align:center;
+  }
+
+  .closing-inner{ max-width:640px; position:relative; z-index:2; }
+
+  .closing .arabic-accent{
+    font-family:'Amiri', serif;
+    font-size:1.6rem;
+    color:var(--burgundy);
+    margin-bottom:18px;
+  }
+
+  .closing p.lead{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.4rem, 4vw, 2.1rem);
+    line-height:1.5;
+    color:var(--burgundy-deep);
+  }
+
+  .closing p.lead em{
+    font-style:italic;
+    color:var(--gold);
+  }
+
+  .closing .signoff{
+    margin-top:30px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.25rem;
+    letter-spacing:0.06em;
+    color:var(--burgundy);
+  }
+
+  .closing .rings-svg{ margin-top:34px; }
+
+  footer{
+    text-align:center;
+    padding:26px;
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    color:var(--ivory);
+    background:var(--burgundy-deep);
+  }
+
+  @media (max-width: 480px){
+    .datetime{ gap:22px; }
+    .countdown .cell{ width:64px; padding:12px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= SECTION 1 : HERO ================= -->
+<section class="hero" id="hero">
+  <div class="bg-art" id="bgArt"></div>
+
+  <div class="hero-content">
+    <div class="hero-frame">
+      <div class="frame-inner">
+        <svg class="rings-svg" width="90" height="60" viewBox="0 0 90 60">
+          <circle class="c1" cx="34" cy="30" r="22"/>
+          <circle class="c2" cx="56" cy="30" r="22"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="eyebrow">Together with joyful hearts</div>
+    <h1>You're&nbsp;Invited</h1>
+    <div class="names">Ahmed &amp; Ghada</div>
+    <div class="arabic-line">بالهناء والسعادة</div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="stem"></div>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 : DETAILS ================= -->
+<section class="details" id="details">
+  <div class="details-head reveal">
+    <div class="eyebrow">The Celebration</div>
+    <h2>Engagement Celebration<br>Ahmed &amp; Ghada</h2>
+    <div class="subline">We would be honored by your presence</div>
+  </div>
+
+  <div class="divider" data-observe>
+    <div class="line"></div>
+    <svg viewBox="0 0 34 20"><circle cx="12" cy="10" r="8"/><circle cx="22" cy="10" r="8"/></svg>
+    <div class="line"></div>
+  </div>
+
+  <div class="card reveal reveal-delay-1" style="margin-top:40px;">
+    <div class="eyebrow" style="opacity:1;">Save the Date</div>
+    <div class="datetime">
+      <div class="item">
+        <div class="num">21</div>
+        <div class="label">August</div>
+      </div>
+      <div class="item">
+        <div class="num">Fri</div>
+        <div class="label">2026</div>
+      </div>
+      <div class="item">
+        <div class="num">7 PM</div>
+        <div class="label">Onwards</div>
+      </div>
+    </div>
+
+    <div class="venue-name">Al Fyrouz Hall</div>
+    <div class="venue-address">
+      Lawyers Syndicate Club — next to Mall of Arabia<br>
+      6th of October City, Egypt
+    </div>
+    <div class="venue-coords">30°00'10.5"N&nbsp; 30°57'55.7"E</div>
+  </div>
+
+  <p class="countdown-title reveal reveal-delay-2">Counting down to the celebration</p>
+  <div class="countdown reveal reveal-delay-2" id="countdown">
+    <div class="cell"><span class="val" id="cd-days">00</span><span class="lbl">Days</span></div>
+    <div class="cell"><span class="val" id="cd-hours">00</span><span class="lbl">Hours</span></div>
+    <div class="cell"><span class="val" id="cd-mins">00</span><span class="lbl">Mins</span></div>
+    <div class="cell"><span class="val" id="cd-secs">00</span><span class="lbl">Secs</span></div>
+  </div>
+
+  <div class="map-wrap reveal reveal-delay-2" style="margin-top:56px;">
+    <iframe
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=30.002917,30.965472&z=16&output=embed"
+      allowfullscreen></iframe>
+    <a class="map-cta" target="_blank" rel="noopener"
+       href="https://www.google.com/maps/search/?api=1&query=30.002917,30.965472">
+      Open in Google Maps
+    </a>
+  </div>
+
+  <div class="qr-block reveal reveal-delay-3">
+    <div class="qr-frame">
+      <img id="qrImg" alt="QR code linking to the venue location on Google Maps"
+           src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&color=74-20-32&bgcolor=255-255-255&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3D30.002917%2C30.965472">
+    </div>
+    <p>Scan to open the venue location</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 : CLOSING ================= -->
+<section class="closing" id="closing">
+  <div class="closing-inner">
+    <div class="divider" data-observe style="opacity:1; transform:none;">
+      <div class="line" style="background:linear-gradient(90deg, transparent, var(--ivory), transparent);"></div>
+      <svg viewBox="0 0 34 20"><circle cx="12" cy="10" r="8" style="stroke:var(--ivory)"/><circle cx="22" cy="10" r="8" style="stroke:var(--ivory)"/></svg>
+      <div class="line" style="background:linear-gradient(90deg, transparent, var(--ivory), transparent);"></div>
+    </div>
+
+    <div class="arabic-accent reveal" style="margin-top:26px;">فألف مبروك</div>
+
+    <p class="lead reveal reveal-delay-1">
+      Two hearts have found their <em>quiet certainty</em>, and a family grows wider
+      by one beautiful promise. Come stand beside us as we mark the moment
+      love became a <em>forever</em> — with laughter, with light, and with all of you near.
+    </p>
+
+    <div class="signoff reveal reveal-delay-2">With love, Ahmed &amp; Ghada</div>
+  </div>
+</section>
+
+<footer>Ahmed &amp; Ghada · Engagement Celebration · 21 August 2026</footer>
+
+<script>
+  // ---------- Scroll reveal ----------
+  const revealEls = document.querySelectorAll('.reveal, .divider[data-observe]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.18});
+  revealEls.forEach(el=>io.observe(el));
+
+  // ---------- Subtle parallax petals in hero ----------
+  const bgArt = document.getElementById('bgArt');
+  const petalDefs = [
+    {top:'8%', left:'6%', w:90, h:100, delay:'0s', rot:'-12deg'},
+    {top:'70%', left:'10%', w:60, h:70, delay:'.3s', rot:'10deg'},
+    {top:'15%', left:'80%', w:110, h:120, delay:'.15s', rot:'20deg'},
+    {top:'68%', left:'82%', w:70, h:80, delay:'.45s', rot:'-16deg'},
+    {top:'40%', left:'2%', w:40, h:46, delay:'.6s', rot:'6deg'}
+  ];
+  petalDefs.forEach(p=>{
+    const d = document.createElement('div');
+    d.className = 'petal';
+    d.style.top = p.top; d.style.left = p.left;
+    d.style.width = p.w+'px'; d.style.height = p.h+'px';
+    d.style.transform = `rotate(${p.rot})`;
+    d.style.animationDelay = p.delay;
+    bgArt.appendChild(d);
+  });
+
+  let ticking = false;
+  window.addEventListener('scroll', ()=>{
+    if(!ticking){
+      window.requestAnimationFrame(()=>{
+        const y = window.scrollY;
+        bgArt.style.transform = `translateY(${y*0.25}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // ---------- Countdown timer ----------
+  const eventDate = new Date('2026-08-21T19:00:00+03:00').getTime();
+  function updateCountdown(){
+    const now = new Date().getTime();
+    const diff = eventDate - now;
+    if(diff <= 0){
+      document.getElementById('countdown').innerHTML =
+        '<div class="cell" style="width:auto; padding:16px 26px;"><span class="val" style="font-size:1.3rem;">Today is the day! 🎉</span></div>';
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>
